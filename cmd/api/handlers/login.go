@@ -19,8 +19,11 @@ func Login(c *gin.Context) {
 	var loginParam LoginParam
 
 	// 获取参数
-	loginParam.UserName = c.Query("username")
-	loginParam.PassWord = c.Query("password")
+	err := c.ShouldBind(&loginParam)
+	if err != nil {
+		SendErrResponse(c, errno.ParamErrCode, err)
+		return
+	}
 
 	//将注册信息写入数据库
 	user_id, statusCode, err := rpc.CheckUser(context.Background(), &user.CheckUserRequest{

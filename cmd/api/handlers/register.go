@@ -19,8 +19,11 @@ func Register(c *gin.Context) {
 	var RegisterParam RegisterParam
 
 	// 获取参数
-	RegisterParam.UserName = c.Query("username")
-	RegisterParam.PassWord = c.Query("password")
+	err := c.ShouldBind(&RegisterParam)
+	if err != nil {
+		SendErrResponse(c, errno.ParamErrCode, err)
+		return
+	}
 
 	//将注册信息写入数据库
 	user_id, statusCode, err := rpc.CreateUser(context.Background(), &user.CreateUserRequest{

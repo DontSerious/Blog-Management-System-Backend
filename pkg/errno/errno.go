@@ -2,7 +2,6 @@ package errno
 
 import (
 	"errors"
-	"fmt"
 )
 
 const (
@@ -21,8 +20,8 @@ var (
 	Success    			= NewErrNo(SuccessCode, "成功")
 	ServiceErr 			= NewErrNo(ServiceErrCode, "服务启动失败")
 	ParamErr   			= NewErrNo(ParamErrCode, "参数有误")
-	LoginErr			= NewErrNo(LoginErrCode, "登陆失败")
-	UserNotExistErr 	= NewErrNo(UserNotExistErrCode, "未注册")
+	LoginErr			= NewErrNo(LoginErrCode, "用户名或密码错误")
+	UserNotExistErr 	= NewErrNo(UserNotExistErrCode, "用户名不存在")
 	UserNameHasUsedErr  = NewErrNo(UserNameHasUsedErrCode, "用户名已存在")
 	TokenErr   			= NewErrNo(TokenInvalidErrCode, "Token错误或已过期")
 	WrongOperationErr   = NewErrNo(WrongOperationErrCode, "系统错误或操作不合法")
@@ -34,7 +33,8 @@ type ErrNo struct {
 }
 
 func (e ErrNo) Error() string {
-	return fmt.Sprintf("err_code=%d, err_msg=%s", e.ErrCode, e.ErrMsg)
+	// return fmt.Sprintf("err_code=%d, err_msg=%s", e.ErrCode, e.ErrMsg)
+	return e.ErrMsg
 }
 
 func NewErrNo(code int64, msg string) ErrNo {
