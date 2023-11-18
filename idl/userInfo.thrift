@@ -8,7 +8,6 @@ struct BaseResponse {
 struct UserInfo {
     1:list<string> categories
     2:list<string> tags
-    3:list<string> ips
 }
 
 struct GetUserInfoRequest {
@@ -20,6 +19,16 @@ struct GetUserInfoResponse {
     2:UserInfo user_info
 }
 
-service UserService {
+struct SetUserInfoRequest {
+    1:string user_id
+    2:UserInfo user_info
+}
+
+struct SetUserInfoResponse {
+    1:BaseResponse base_resp
+}
+
+service UserInfoService {
     GetUserInfoResponse GetUserInfo(1:GetUserInfoRequest req)
+    SetUserInfoResponse SetUserInfo(1:SetUserInfoRequest req)
 }

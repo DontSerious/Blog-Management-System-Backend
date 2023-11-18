@@ -5,7 +5,6 @@ import (
 	"Bishe/be/kitex_gen/user"
 	"Bishe/be/pkg/errno"
 	"context"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,28 +15,24 @@ type RegisterParam struct {
 }
 
 func Register(c *gin.Context) {
-	var RegisterParam RegisterParam
+	var registerParam RegisterParam
 
 	// 获取参数
-	err := c.ShouldBind(&RegisterParam)
+	err := c.ShouldBind(&registerParam)
 	if err != nil {
-		SendErrResponse(c, errno.ParamErrCode, err)
+		SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
 		return
 	}
 
 	//将注册信息写入数据库
-	user_id, statusCode, err := rpc.CreateUser(context.Background(), &user.CreateUserRequest{
-		Username: RegisterParam.UserName,
-		Password: RegisterParam.PassWord,
+	resp, err := rpc.CreateUser(context.Background(), &user.CreateUserRequest{
+		Username: registerParam.UserName,
+		Password: registerParam.PassWord,
 	})
 	if err != nil {
-		SendErrResponse(c, statusCode, err)
+		SendErrResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg)
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{
-		"status_code": errno.SuccessCode,
-		"status_msg":  "注册成功",
-		"user_id":     user_id,
-	})
+	SendSuccResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg, resp.UserId)
 }

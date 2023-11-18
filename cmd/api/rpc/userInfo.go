@@ -1,8 +1,8 @@
 package rpc
 
 import (
-	"Bishe/be/kitex_gen/user"
-	"Bishe/be/kitex_gen/user/userservice"
+	"Bishe/be/kitex_gen/userInfo"
+	"Bishe/be/kitex_gen/userInfo/userinfoservice"
 	"Bishe/be/pkg/constants"
 	"context"
 	"time"
@@ -12,16 +12,16 @@ import (
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 
-var userClient userservice.Client
+var userInfoClient userinfoservice.Client
 
-func initUserRPC() {
+func initUserInfoRPC() {
 	r, err := etcd.NewEtcdResolver([]string{constants.EtcdAddress})
 	if err != nil {
 		panic(err)
 	}
 
-	c, err := userservice.NewClient(
-		constants.UserServiceName,
+	c, err := userinfoservice.NewClient(
+		constants.UserInfoServiceName,
 		client.WithMuxConnection(1),                       // mux
 		client.WithRPCTimeout(3*time.Second),              // rpc timeout
 		client.WithConnectTimeout(50*time.Millisecond),    // conn timeout
@@ -31,13 +31,14 @@ func initUserRPC() {
 	if err != nil {
 		panic(err)
 	}
-	userClient = c
+
+	userInfoClient = c
 }
 
-func CreateUser(ctx context.Context, req *user.CreateUserRequest) (*user.CreateUserResponse, error) {
-	return userClient.CreateUser(ctx, req)
+func QueryUserInfo(ctx context.Context, req *userinfo.GetUserInfoRequest) (*userinfo.GetUserInfoResponse, error) {
+	return userInfoClient.GetUserInfo(ctx, req)
 }
 
-func CheckUser(ctx context.Context, req *user.CheckUserRequest) (*user.CheckUserResponse, error) {
-	return userClient.CheckUser(ctx, req)
+func UpdateUserInfo(ctx context.Context, req *userinfo.SetUserInfoRequest) (*userinfo.SetUserInfoResponse, error) {
+	return userInfoClient.SetUserInfo(ctx, req)
 }

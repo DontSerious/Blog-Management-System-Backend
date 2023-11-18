@@ -1,5 +1,6 @@
 package rpc
 
 func InitRPC() {
-	initUserRpc()
+	initUserRPC()
+	initUserInfoRPC()
 }

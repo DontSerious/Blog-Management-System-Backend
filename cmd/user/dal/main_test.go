@@ -27,6 +27,6 @@ func TestCreate(t *testing.T) {
 }
 
 func TestQueryUser(t *testing.T) {
-	_, err := db.QueryUser(ctx, "u2")
-	fmt.Printf("db.QueryUser(ctx, \"u1\"): %v\n", err)
+	user, _ := db.QueryUser(ctx, "qq")
+	fmt.Printf("user.ObjectID.Hex(): %v\n", user.ObjectID.Hex())
 }

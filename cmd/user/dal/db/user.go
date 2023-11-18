@@ -14,27 +14,22 @@ type User struct {
 }
 
 func CreateUser(ctx context.Context, user *User) (string, error) {
-	doc := bson.D{
+	// users表插入
+	res, err := UsersCollection.InsertOne(context.TODO(), &bson.D{
 		{Key: "username", Value: user.UserName},
 		{Key: "password", Value: user.Password},
-	}
-
-	// users表插入
-	res, err := UsersCollection.InsertOne(context.TODO(), doc)
+	})
     if err != nil {
         return "", err
     }
 
-	// 获取 _id
+	// 获取 _id，userInfo表插入
 	insId := res.InsertedID.(primitive.ObjectID)
 	idStr := insId.Hex()
-	doc = bson.D{
+	_, err = UserInfoCollection.InsertOne(context.TODO(), &bson.D{
 		{Key: "_id", Value: insId},
 		{Key: "username", Value: user.UserName},
-	}
-
-	// userInfo表插入
-	_, err = UserInfoCollection.InsertOne(context.TODO(), doc)
+	})
     if err != nil {
         return "", err
     }

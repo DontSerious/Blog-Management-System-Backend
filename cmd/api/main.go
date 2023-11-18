@@ -20,6 +20,10 @@ func main() {
 	r.POST("/login/", handlers.Login)
 	r.POST("/register/", handlers.Register)
 
+	// userInfo
+	r.GET("/queryInfo/", handlers.Query)
+	r.POST("/updateInfo/", handlers.Update)
+
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		println(err)
 	}
