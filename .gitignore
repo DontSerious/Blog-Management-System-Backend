@@ -54,3 +54,6 @@ _testmain.go
 kitex_gen/
 DouSheng-dev/
 etcd/
+
+api.sh
+run.sh

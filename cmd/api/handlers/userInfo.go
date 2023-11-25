@@ -14,9 +14,9 @@ type QueryParam struct {
 }
 
 type UpdateParam struct {
-	UserId string `json:"_id" form:"_id"`
-	Categories []string `json:"categories" form:"categories"`
-	Tags []string `json:"Tags" form:"Tags"`
+	UserId     string   `json:"_id" form:"_id"`
+	Categories []string `json:"Categories" form:"Categories"`
+	Tags       []string `json:"Tags" form:"Tags"`
 }
 
 func Query(c *gin.Context) {
@@ -52,7 +52,7 @@ func Update(c *gin.Context) {
 		UserId: updateParam.UserId,
 		UserInfo: &userinfo.UserInfo{
 			Categories: updateParam.Categories,
-			Tags: updateParam.Tags,
+			Tags:       updateParam.Tags,
 		},
 	})
 	if err != nil {
