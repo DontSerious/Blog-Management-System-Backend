@@ -2,13 +2,17 @@ package utils
 
 import (
 	"Bishe/be/kitex_gen/edit"
+	"Bishe/be/pkg/constants"
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 )
 
-// ReadDirectory reads a directory and constructs a FileNode tree
-func ReadDirectory(path string) (*edit.FileNode, error) {
+var length = len(constants.EditDirectory)
+
+// 检查是否为文件夹
+func ReadDirectory(path string) (*edit.DataNode, error) {
 	info, err := os.Stat(path)
 	if err != nil {
 		return nil, err
@@ -22,15 +26,16 @@ func ReadDirectory(path string) (*edit.FileNode, error) {
 }
 
 // buildFileNode recursively builds a FileNode tree for the given directory
-func buildFileNode(path string) (*edit.FileNode, error) {
+func buildFileNode(path string) (*edit.DataNode, error) {
 	info, err := os.Stat(path)
 	if err != nil {
 		return nil, err
 	}
 
-	node := &edit.FileNode{
-		Name:  info.Name(),
-		IsDir: info.IsDir(),
+	node := &edit.DataNode{
+		Title:  info.Name(),
+		IsLeaf: !info.IsDir(),
+		Key:    path[length:], // 变为相对路径
 	}
 
 	if info.IsDir() {
@@ -45,8 +50,9 @@ func buildFileNode(path string) (*edit.FileNode, error) {
 }
 
 // readChildren reads the children of a directory and constructs FileNode for each child
-func readChildren(dirPath string) ([]*edit.FileNode, error) {
-	var children []*edit.FileNode
+func readChildren(dirPath string) ([]*edit.DataNode, error) {
+	var dirNodes []*edit.DataNode
+	var fileNodes []*edit.DataNode
 
 	files, err := os.ReadDir(dirPath)
 	if err != nil {
@@ -60,8 +66,18 @@ func readChildren(dirPath string) ([]*edit.FileNode, error) {
 			return nil, err
 		}
 
-		children = append(children, childNode)
+		if childNode.IsLeaf {
+			fileNodes = append(fileNodes, childNode)
+		} else {
+			dirNodes = append(dirNodes, childNode)
+		}
 	}
 
-	return children, nil
+	// Sort the folder nodes by key
+	sort.Slice(dirNodes, func(i, j int) bool {
+		return dirNodes[i].Key < dirNodes[j].Key
+	})
+
+	// Concatenate the folder nodes and file nodes
+	return append(dirNodes, fileNodes...), nil
 }

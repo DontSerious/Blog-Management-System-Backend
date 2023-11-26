@@ -29,6 +29,7 @@ func main() {
 	r.GET("/fileContent/", handlers.GetFile)
 	r.POST("/createFile/", handlers.CreateFile)
 	r.POST("/createDir/", handlers.CreateDir)
+	r.POST("/saveFile/", handlers.SaveFile)
 
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		println(err)

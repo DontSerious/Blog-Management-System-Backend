@@ -5,15 +5,16 @@ struct BaseResponse {
     2: string status_msg
 }
 
-struct FileNode {
-    1: string name,
-    2: bool is_dir,
-    3: list<FileNode> children
+struct DataNode {
+    1: string title,
+    2: string key
+    3: bool isLeaf,
+    4: list<DataNode> children
 }
 
 struct GetDirTreeResponse {
     1: BaseResponse base_resp
-    2: list<FileNode> dir_tree
+    2: list<DataNode> dir_tree
 }
 
 struct GetFileRequest {
@@ -41,9 +42,19 @@ struct CreateDirResponse {
     1: BaseResponse base_resp
 }
 
+struct SaveFileRequest {
+    1: string path
+    2: string content
+}
+
+struct SaveFileResponse {
+    1: BaseResponse base_resp
+}
+
 service EditService {
     GetDirTreeResponse GetDirTree()
     GetFileResponse GetFile(1: GetFileRequest req)
     CreateFileResponse CreateFile(1: CreateFileRequest req)
     CreateDirResponse CreateDir(1: CreateDirRequest req)
+    SaveFileResponse SaveFile(1:SaveFileRequest req)
 }

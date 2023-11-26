@@ -86,3 +86,23 @@ func (s *EditServiceImpl) CreateDir(ctx context.Context, req *edit.CreateDirRequ
 	resp.BaseResp = pack.BuildBaseResponse(errno.SuccessCode, "创建文件夹成功")
 	return
 }
+
+// SaveFile implements the EditServiceImpl interface.
+func (s *EditServiceImpl) SaveFile(ctx context.Context, req *edit.SaveFileRequest) (resp *edit.SaveFileResponse, err error) {
+	resp = new(edit.SaveFileResponse)
+
+	if len(req.Path) == 0 {
+		resp.BaseResp = pack.BuildBaseResponse(errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return resp, nil
+	}
+
+	statusCode, err := service.NewSaveFileService(ctx).SaveFile(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResponse(statusCode, err.Error())
+		return resp, nil
+	}
+
+	resp.BaseResp = pack.BuildBaseResponse(errno.SuccessCode, "保存成功")
+
+	return
+}

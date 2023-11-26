@@ -18,7 +18,7 @@ func NewGetDirTreeService(ctx context.Context) *GetDirTreeService {
 	}
 }
 
-func (s *GetDirTreeService) GetDirTree() (dirTree []*edit.FileNode, statusCode int64, err error) {
+func (s *GetDirTreeService) GetDirTree() (dirTree []*edit.DataNode, statusCode int64, err error) {
 	fileTree, err := utils.ReadDirectory(constants.EditDirectory)
 	if err != nil {
 		return nil, errno.ServiceErrCode, err

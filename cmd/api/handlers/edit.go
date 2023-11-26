@@ -13,6 +13,12 @@ type PathParam struct {
 	Path string `json:"path" form:"path"`
 }
 
+// 保存文件参数
+type FileParam struct {
+	Path    string `json:"path" form:"path"`
+	Content string `json:"content" form:"content"`
+}
+
 func GetDirTree(c *gin.Context) {
 	resp, err := rpc.GetDirTree(context.Background())
 	if err != nil {
@@ -74,6 +80,27 @@ func CreateDir(c *gin.Context) {
 
 	resp, err := rpc.CreateDir(context.Background(), &edit.CreateDirRequest{
 		Path: pathParam.Path,
+	})
+	if err != nil {
+		SendErrResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg)
+		return
+	}
+
+	SendSuccResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg, nil)
+}
+
+func SaveFile(c *gin.Context) {
+	var fileParam FileParam
+
+	err := c.ShouldBind(&fileParam)
+	if err != nil {
+		SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return
+	}
+
+	resp, err := rpc.SaveFile(context.Background(), &edit.SaveFileRequest{
+		Path:    fileParam.Path,
+		Content: fileParam.Content,
 	})
 	if err != nil {
 		SendErrResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg)

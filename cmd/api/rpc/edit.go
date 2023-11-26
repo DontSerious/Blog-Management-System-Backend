@@ -49,3 +49,7 @@ func CreateFile(ctx context.Context, req *edit.CreateFileRequest) (*edit.CreateF
 func CreateDir(ctx context.Context, req *edit.CreateDirRequest) (*edit.CreateDirResponse, error) {
 	return editClient.CreateDir(ctx, req)
 }
+
+func SaveFile(ctx context.Context, req *edit.SaveFileRequest) (*edit.SaveFileResponse, error) {
+	return editClient.SaveFile(ctx, req)
+}

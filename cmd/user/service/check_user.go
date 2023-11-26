@@ -20,7 +20,7 @@ func NewCheckUserService(ctx context.Context) *CheckUserService {
 // 检查用户名和密码是否正确，正确返回idStr
 func (s *CheckUserService) CheckUser(req *user.CheckUserRequest) (idStr string, statusCode int64, err error) {
 	// 判断用户是否存在
-	user, err := db.QueryUser(s.ctx, req.Username);
+	user, err := db.QueryUser(s.ctx, req.Username)
 	if err != nil {
 		return "", errno.UserNotExistErrCode, errno.UserNotExistErr
 	}
