@@ -106,3 +106,22 @@ func (s *EditServiceImpl) SaveFile(ctx context.Context, req *edit.SaveFileReques
 
 	return
 }
+
+// DelAll implements the EditServiceImpl interface.
+func (s *EditServiceImpl) DelAll(ctx context.Context, req *edit.DelAllRequest) (resp *edit.DelAllResponse, err error) {
+	resp = new(edit.DelAllResponse)
+
+	if len(req.Path) == 0 {
+		resp.BaseResp = pack.BuildBaseResponse(errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return resp, nil
+	}
+
+	statusCode, err := service.NewDelAllService(ctx).DelAll(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResponse(statusCode, err.Error())
+		return resp, nil
+	}
+
+	resp.BaseResp = pack.BuildBaseResponse(errno.SuccessCode, "删除成功")
+	return
+}

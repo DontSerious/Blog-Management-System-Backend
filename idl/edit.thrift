@@ -51,10 +51,19 @@ struct SaveFileResponse {
     1: BaseResponse base_resp
 }
 
+struct DelAllRequest {
+    1: string path
+}
+
+struct DelAllResponse {
+    1: BaseResponse base_resp
+}
+
 service EditService {
     GetDirTreeResponse GetDirTree()
     GetFileResponse GetFile(1: GetFileRequest req)
     CreateFileResponse CreateFile(1: CreateFileRequest req)
     CreateDirResponse CreateDir(1: CreateDirRequest req)
     SaveFileResponse SaveFile(1:SaveFileRequest req)
+    DelAllResponse DelAll(1:DelAllRequest req)
 }

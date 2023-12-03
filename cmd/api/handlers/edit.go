@@ -109,3 +109,23 @@ func SaveFile(c *gin.Context) {
 
 	SendSuccResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg, nil)
 }
+
+func DelAll(c *gin.Context) {
+	var pathParam PathParam
+
+	err := c.ShouldBind(&pathParam)
+	if err != nil {
+		SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return
+	}
+
+	resp, err := rpc.DelAll(context.Background(), &edit.DelAllRequest{
+		Path: pathParam.Path,
+	})
+	if err != nil {
+		SendErrResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg)
+		return
+	}
+
+	SendSuccResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg, nil)
+}
