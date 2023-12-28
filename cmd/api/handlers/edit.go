@@ -5,6 +5,7 @@ import (
 	"Bishe/be/kitex_gen/edit"
 	"Bishe/be/pkg/errno"
 	"context"
+	"io"
 
 	"github.com/gin-gonic/gin"
 )
@@ -125,6 +126,50 @@ func DelAll(c *gin.Context) {
 	if err != nil {
 		SendErrResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg)
 		return
+	}
+
+	SendSuccResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg, nil)
+}
+
+func UploadFile(c *gin.Context) {
+	var resp *edit.UploadFileResponse
+	var err error
+
+	// 获取上传的文件信息
+	path := c.PostForm("path")
+	fileSet, err := c.MultipartForm()
+	if err != nil {
+		SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return
+	}
+
+	// 打开文件
+	for _, file := range fileSet.File["file"] {
+		fs, err := file.Open()
+		if err != nil {
+			SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
+			return
+		}
+		defer fs.Close()
+
+		// 读取文件内容
+		fileContent, err := io.ReadAll(fs)
+		if err != nil {
+			SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
+			return
+		}
+
+		path = path + "/" + file.Filename
+
+		// 发送请求
+		resp, err = rpc.UploadFile(context.Background(), &edit.UploadFileRequest{
+			File: fileContent,
+			Path: path,
+		})
+		if err != nil {
+			SendErrResponse(c, errno.ParamErrCode, errno.ParamErr.ErrMsg)
+			return
+		}
 	}
 
 	SendSuccResponse(c, resp.BaseResp.StatusCode, resp.BaseResp.StatusMsg, nil)

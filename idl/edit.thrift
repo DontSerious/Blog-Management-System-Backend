@@ -59,6 +59,15 @@ struct DelAllResponse {
     1: BaseResponse base_resp
 }
 
+struct UploadFileRequest {
+    1: string path
+    2: binary file
+}
+
+struct UploadFileResponse {
+    1: BaseResponse base_resp
+}
+
 service EditService {
     GetDirTreeResponse GetDirTree()
     GetFileResponse GetFile(1: GetFileRequest req)
@@ -66,4 +75,5 @@ service EditService {
     CreateDirResponse CreateDir(1: CreateDirRequest req)
     SaveFileResponse SaveFile(1:SaveFileRequest req)
     DelAllResponse DelAll(1:DelAllRequest req)
+    UploadFileResponse UploadFile(1: UploadFileRequest req)
 }

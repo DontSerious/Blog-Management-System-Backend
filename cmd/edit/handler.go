@@ -125,3 +125,18 @@ func (s *EditServiceImpl) DelAll(ctx context.Context, req *edit.DelAllRequest) (
 	resp.BaseResp = pack.BuildBaseResponse(errno.SuccessCode, "删除成功")
 	return
 }
+
+// UploadFile implements the EditServiceImpl interface.
+func (s *EditServiceImpl) UploadFile(ctx context.Context, req *edit.UploadFileRequest) (resp *edit.UploadFileResponse, err error) {
+	resp = new(edit.UploadFileResponse)
+
+	statusCode, err := service.NewUploadFileService(ctx).UploadFile(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResponse(statusCode, err.Error())
+		return resp, nil
+	}
+
+	resp.BaseResp = pack.BuildBaseResponse(statusCode, "上传文件成功")
+
+	return resp, nil
+}

@@ -57,3 +57,7 @@ func SaveFile(ctx context.Context, req *edit.SaveFileRequest) (*edit.SaveFileRes
 func DelAll(ctx context.Context, req *edit.DelAllRequest) (*edit.DelAllResponse, error) {
 	return editClient.DelAll(ctx, req)
 }
+
+func UploadFile(ctx context.Context, req *edit.UploadFileRequest) (*edit.UploadFileResponse, error) {
+	return editClient.UploadFile(ctx, req)
+}

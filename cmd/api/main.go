@@ -32,6 +32,9 @@ func main() {
 	r.POST("/saveFile/", handlers.SaveFile)
 	r.DELETE("/delAll/", handlers.DelAll)
 
+	// file
+	r.POST("/uploadFile", handlers.UploadFile)
+
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		println(err)
 	}

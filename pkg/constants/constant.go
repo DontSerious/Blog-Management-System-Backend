@@ -15,10 +15,12 @@ const (
 	UserResolveTCPAddr     = "127.0.0.1:6660"
 	UserInfoResolveTCPAddr = "127.0.0.1:6661"
 	EditResolveTCPAddr     = "127.0.0.1:6662"
+	FileResolveTCPAddr     = "127.0.0.1:6663"
 
 	UserServiceName     = "user"
 	UserInfoServiceName = "userInfo"
 	EditServiceName     = "edit"
+	FileServiceName     = "file"
 )
 
 // editService
