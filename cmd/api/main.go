@@ -19,6 +19,9 @@ func main() {
 	// user
 	r.POST("/login/", handlers.Login)
 	r.POST("/register/", handlers.Register)
+	r.POST("/changePWD", handlers.ChangePWD)
+	r.GET("/delUser", handlers.DelUser)
+	r.GET("/getAllUser", handlers.GetAllUser)
 
 	// userInfo
 	r.GET("/queryInfo/", handlers.Query)

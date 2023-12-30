@@ -41,3 +41,15 @@ func CreateUser(ctx context.Context, req *user.CreateUserRequest) (*user.CreateU
 func CheckUser(ctx context.Context, req *user.CheckUserRequest) (*user.CheckUserResponse, error) {
 	return userClient.CheckUser(ctx, req)
 }
+
+func ChangePWD(ctx context.Context, req *user.ChangePWDRequest) (*user.ChangePWDResponse, error) {
+	return userClient.ChangePWD(ctx, req)
+}
+
+func DelUser(ctx context.Context, req *user.DelUserRequest) (*user.DelUserResponse, error) {
+	return userClient.DelUser(ctx, req)
+}
+
+func GetAllUser(ctx context.Context) (*user.GetAllUserResponse, error) {
+	return userClient.GetAllUser(ctx)
+}

@@ -30,3 +30,24 @@ func TestQueryUser(t *testing.T) {
 	user, _ := db.QueryUser(ctx, "qq")
 	fmt.Printf("user.ObjectID.Hex(): %v\n", user.ObjectID.Hex())
 }
+
+func TestGetAllUser(t *testing.T) {
+	users, _ := db.GetAllUser(ctx)
+	for _, user := range users {
+		fmt.Print(user)
+	}
+}
+
+func TestDelUser(t *testing.T) {
+	err := db.DelUser(ctx, "658e2e9aee48b155594a9584")
+	if err != nil {
+		fmt.Print(err)
+	}
+}
+
+func TestChangePWD(t *testing.T) {
+	err := db.ChangePWD(ctx, "658e2e7cee48b155594a9582", "qw")
+	if err != nil {
+		fmt.Print(err)
+	}
+}

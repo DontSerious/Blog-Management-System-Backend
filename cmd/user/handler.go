@@ -58,3 +58,59 @@ func (s *UserServiceImpl) CheckUser(ctx context.Context, req *user.CheckUserRequ
 	resp.UserId = idStr
 	return resp, nil
 }
+
+// ChangePWD implements the UserServiceImpl interface.
+func (s *UserServiceImpl) ChangePWD(ctx context.Context, req *user.ChangePWDRequest) (resp *user.ChangePWDResponse, err error) {
+	resp = new(user.ChangePWDResponse)
+
+	//检查参数是否合法
+	if len(req.UserId) == 0 || len(req.Password) == 0 {
+		resp.BaseResp = pack.BuildBaseResponse(errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return resp, nil
+	}
+
+	statusCode, err := service.NewChangePWDService(ctx).ChangePWD(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResponse(statusCode, err.Error())
+		return resp, nil
+	}
+
+	resp.BaseResp = pack.BuildBaseResponse(statusCode, "修改密码成功")
+	return resp, nil
+}
+
+// DelUser implements the UserServiceImpl interface.
+func (s *UserServiceImpl) DelUser(ctx context.Context, req *user.DelUserRequest) (resp *user.DelUserResponse, err error) {
+	resp = new(user.DelUserResponse)
+
+	//检查参数是否合法
+	if len(req.UserId) == 0 {
+		resp.BaseResp = pack.BuildBaseResponse(errno.ParamErrCode, errno.ParamErr.ErrMsg)
+		return resp, nil
+	}
+
+	statusCode, err := service.NewDelUserService(ctx).DelUser(req)
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResponse(statusCode, err.Error())
+		return resp, nil
+	}
+
+	resp.BaseResp = pack.BuildBaseResponse(statusCode, "删除用户成功")
+	return resp, nil
+}
+
+// GetAllUser implements the UserServiceImpl interface.
+func (s *UserServiceImpl) GetAllUser(ctx context.Context) (resp *user.GetAllUserResponse, err error) {
+	resp = new(user.GetAllUserResponse)
+
+	users, statusCode, err := service.NewGetAllUserService(ctx).GetAllUser()
+	if err != nil {
+		resp.BaseResp = pack.BuildBaseResponse(statusCode, err.Error())
+		return resp, nil
+	}
+
+	resp.UserList = pack.BuildUserList(users)
+	resp.BaseResp = pack.BuildBaseResponse(statusCode, "获取全部用户成功")
+
+	return resp, nil
+}
