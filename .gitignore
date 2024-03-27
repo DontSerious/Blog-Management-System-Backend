@@ -57,3 +57,4 @@ etcd/
 
 api.sh
 run.sh
+idl/*.puml

@@ -4,6 +4,7 @@ import (
 	"Bishe/be/cmd/api/handlers"
 	"Bishe/be/cmd/api/rpc"
 	"Bishe/be/pkg/middlewares"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,7 @@ func Init() {
 func main() {
 	Init()
 	r := gin.Default()
+	// 配置跨域中间件
 	r.Use(middlewares.Cors())
 
 	// user
@@ -36,11 +38,9 @@ func main() {
 	r.POST("/createDir", handlers.CreateDir)
 	r.POST("/saveFile", handlers.SaveFile)
 	r.DELETE("/delAll", handlers.DelAll)
-
-	// file
 	r.POST("/uploadFile", handlers.UploadFile)
 
 	if err := http.ListenAndServe(":8080", r); err != nil {
-		println(err)
+		log.Println(err)
 	}
 }
