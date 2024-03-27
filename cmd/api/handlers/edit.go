@@ -1,11 +1,12 @@
 package handlers
 
 import (
-	"Bishe/be/cmd/api/rpc"
-	"Bishe/be/kitex_gen/edit"
-	"Bishe/be/pkg/errno"
 	"context"
 	"io"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/api/rpc"
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 
 	"github.com/gin-gonic/gin"
 )

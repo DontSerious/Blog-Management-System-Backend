@@ -1,8 +1,8 @@
 package pack
 
 import (
-	"Bishe/be/cmd/user/dal/db"
-	"Bishe/be/kitex_gen/user"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/user/dal/db"
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/user"
 )
 
 func BuildBaseResponse(statusCode int64, statusMsg string) *user.BaseResponse {

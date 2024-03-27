@@ -1,11 +1,12 @@
 package rpc
 
 import (
-	"Bishe/be/kitex_gen/userInfo"
-	"Bishe/be/kitex_gen/userInfo/userinfoservice"
-	"Bishe/be/pkg/constants"
 	"context"
 	"time"
+
+	userinfo "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo"
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo/userinfoservice"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
 
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"

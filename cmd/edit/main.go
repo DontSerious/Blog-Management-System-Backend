@@ -1,10 +1,11 @@
 package main
 
 import (
-	edit "Bishe/be/kitex_gen/edit/editservice"
-	"Bishe/be/pkg/constants"
 	"log"
 	"net"
+
+	edit "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit/editservice"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
 
 	"github.com/cloudwego/kitex/pkg/limit"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"

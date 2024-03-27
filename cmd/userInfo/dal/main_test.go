@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"Bishe/be/cmd/userInfo/dal/db"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/userInfo/dal/db"
 )
 
 var ctx context.Context
@@ -22,7 +22,7 @@ func TestMain(m *testing.M) {
 func TestUpdate(t *testing.T) {
 	err := db.UpdateUserInfo(ctx, "655841eb9016429abbc94b6c", &db.UserInfo{
 		Categories: []string{"aa", "bb", "cc"},
-		Tags: []string{"cc", "dd", "ee"},
+		Tags:       []string{"cc", "dd", "ee"},
 	})
 	fmt.Printf("err: %v\n", err)
 }

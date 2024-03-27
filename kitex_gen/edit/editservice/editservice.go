@@ -3,8 +3,8 @@
 package editservice
 
 import (
-	edit "Bishe/be/kitex_gen/edit"
 	"context"
+	edit "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
 	client "github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
 )
@@ -29,7 +29,7 @@ func NewServiceInfo() *kitex.ServiceInfo {
 	}
 	extra := map[string]interface{}{
 		"PackageName":     "edit",
-		"ServiceFilePath": `idl/edit.thrift`,
+		"ServiceFilePath": `../../idl/edit.thrift`,
 	}
 	svcInfo := &kitex.ServiceInfo{
 		ServiceName:     serviceName,

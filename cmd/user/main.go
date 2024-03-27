@@ -1,15 +1,16 @@
 package main
 
 import (
-	"Bishe/be/cmd/user/dal"
-	user "Bishe/be/kitex_gen/user/userservice"
-	"Bishe/be/pkg/constants"
 	"log"
 	"net"
 
-	"github.com/cloudwego/kitex/server"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/user/dal"
+	user "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/user/userservice"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
+
 	"github.com/cloudwego/kitex/pkg/limit"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
+	"github.com/cloudwego/kitex/server"
 	etcd "github.com/kitex-contrib/registry-etcd"
 )
 

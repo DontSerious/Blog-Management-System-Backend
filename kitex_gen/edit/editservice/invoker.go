@@ -3,7 +3,7 @@
 package editservice
 
 import (
-	edit "Bishe/be/kitex_gen/edit"
+	edit "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
 	server "github.com/cloudwego/kitex/server"
 )
 

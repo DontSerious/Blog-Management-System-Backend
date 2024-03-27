@@ -3,8 +3,8 @@
 package userservice
 
 import (
-	user "Bishe/be/kitex_gen/user"
 	"context"
+	user "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/user"
 	client "github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
 )

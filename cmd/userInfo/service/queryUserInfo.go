@@ -1,10 +1,11 @@
 package service
 
 import (
-	"Bishe/be/cmd/userInfo/dal/db"
-	userInfo "Bishe/be/kitex_gen/userInfo"
-	"Bishe/be/pkg/errno"
 	"context"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/userInfo/dal/db"
+	userInfo "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 )
 
 type QueryUserInfoService struct {
@@ -18,7 +19,7 @@ func NewQueryUserInfoService(ctx context.Context) *QueryUserInfoService {
 }
 
 func (s *QueryUserInfoService) QueryUserInfo(req *userInfo.GetUserInfoRequest) (userInfo *db.UserInfo, statusCode int64, err error) {
-	userInfo, err = db.QueryUserInfo(s.ctx, req.UserId);
+	userInfo, err = db.QueryUserInfo(s.ctx, req.UserId)
 	if err != nil {
 		return nil, errno.ServiceErrCode, err
 	}

@@ -1,10 +1,11 @@
 package service
 
 import (
-	"Bishe/be/cmd/userInfo/dal/db"
-	userInfo "Bishe/be/kitex_gen/userInfo"
-	"Bishe/be/pkg/errno"
 	"context"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/userInfo/dal/db"
+	userInfo "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 )
 
 type UpdateUserInfoService struct {
@@ -26,7 +27,7 @@ func (s *UpdateUserInfoService) UpdateUserInfo(req *userInfo.SetUserInfoRequest)
 
 	err = db.UpdateUserInfo(s.ctx, req.UserId, &db.UserInfo{
 		Categories: req.UserInfo.Categories,
-		Tags: req.UserInfo.Tags,
+		Tags:       req.UserInfo.Tags,
 	})
 	if err != nil {
 		return errno.ServiceErrCode, err

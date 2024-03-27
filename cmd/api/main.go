@@ -1,11 +1,12 @@
 package main
 
 import (
-	"Bishe/be/cmd/api/handlers"
-	"Bishe/be/cmd/api/rpc"
-	"Bishe/be/pkg/middlewares"
 	"log"
 	"net/http"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/api/handlers"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/api/rpc"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/middlewares"
 
 	"github.com/gin-gonic/gin"
 )

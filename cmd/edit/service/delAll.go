@@ -1,11 +1,12 @@
 package service
 
 import (
-	"Bishe/be/kitex_gen/edit"
-	"Bishe/be/pkg/constants"
-	"Bishe/be/pkg/errno"
 	"context"
 	"os"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 )
 
 type DelAllService struct {

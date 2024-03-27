@@ -1,10 +1,11 @@
 package service
 
 import (
-	"Bishe/be/cmd/user/dal/db"
-	"Bishe/be/kitex_gen/user"
-	"Bishe/be/pkg/errno"
 	"context"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/user/dal/db"
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/user"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 )
 
 type CreateUserService struct {
@@ -23,7 +24,7 @@ func (s *CreateUserService) CreateUser(req *user.CreateUserRequest) (idStr strin
 	if err == nil {
 		return "", errno.UserNameHasUsedErrCode, errno.UserNameHasUsedErr
 	}
-	
+
 	// 创建用户
 	idStr, err = db.CreateUser(s.ctx, &db.User{
 		UserName: req.Username,

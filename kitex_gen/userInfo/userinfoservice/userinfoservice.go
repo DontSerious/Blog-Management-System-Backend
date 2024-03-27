@@ -3,8 +3,8 @@
 package userinfoservice
 
 import (
-	userinfo "Bishe/be/kitex_gen/userInfo"
 	"context"
+	userinfo "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo"
 	client "github.com/cloudwego/kitex/client"
 	kitex "github.com/cloudwego/kitex/pkg/serviceinfo"
 )

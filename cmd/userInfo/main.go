@@ -1,11 +1,12 @@
 package main
 
 import (
-	"Bishe/be/cmd/userInfo/dal"
-	userinfo "Bishe/be/kitex_gen/userInfo/userinfoservice"
-	"Bishe/be/pkg/constants"
 	"log"
 	"net"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/userInfo/dal"
+	userinfo "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo/userinfoservice"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
 
 	"github.com/cloudwego/kitex/pkg/limit"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"

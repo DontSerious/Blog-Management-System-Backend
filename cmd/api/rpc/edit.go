@@ -1,11 +1,12 @@
 package rpc
 
 import (
-	"Bishe/be/kitex_gen/edit"
-	"Bishe/be/kitex_gen/edit/editservice"
-	"Bishe/be/pkg/constants"
 	"context"
 	"time"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit/editservice"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
 
 	"github.com/cloudwego/kitex/client"
 	"github.com/cloudwego/kitex/pkg/retry"

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"Bishe/be/cmd/user/dal/db"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/user/dal/db"
 )
 
 var ctx context.Context

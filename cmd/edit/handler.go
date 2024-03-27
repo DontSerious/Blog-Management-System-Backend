@@ -1,11 +1,12 @@
 package main
 
 import (
-	"Bishe/be/cmd/edit/pack"
-	"Bishe/be/cmd/edit/service"
-	"Bishe/be/kitex_gen/edit"
-	"Bishe/be/pkg/errno"
 	"context"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/edit/pack"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/edit/service"
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 )
 
 // EditServiceImpl implements the last service interface defined in the IDL.

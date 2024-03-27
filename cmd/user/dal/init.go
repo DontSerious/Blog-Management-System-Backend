@@ -1,6 +1,6 @@
 package dal
 
-import "Bishe/be/cmd/user/dal/db"
+import "github.com/DontSerious/Blog-Management-System-Backend/cmd/user/dal/db"
 
 func Init() {
 	db.Init()

@@ -1,4 +1,4 @@
-module Bishe/be
+module github.com/DontSerious/Blog-Management-System-Backend
 
 go 1.21.3
 

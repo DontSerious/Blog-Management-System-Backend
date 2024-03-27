@@ -1,12 +1,13 @@
 package utils
 
 import (
-	"Bishe/be/kitex_gen/edit"
-	"Bishe/be/pkg/constants"
 	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/edit"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
 )
 
 var length = len(constants.EditDirectory)

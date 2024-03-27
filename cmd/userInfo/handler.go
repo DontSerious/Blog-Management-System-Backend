@@ -1,11 +1,12 @@
 package main
 
 import (
-	"Bishe/be/cmd/userInfo/pack"
-	"Bishe/be/cmd/userInfo/service"
-	userinfo "Bishe/be/kitex_gen/userInfo"
-	"Bishe/be/pkg/errno"
 	"context"
+
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/userInfo/pack"
+	"github.com/DontSerious/Blog-Management-System-Backend/cmd/userInfo/service"
+	userinfo "github.com/DontSerious/Blog-Management-System-Backend/kitex_gen/userInfo"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/errno"
 )
 
 // UserServiceImpl implements the last service interface defined in the IDL.
