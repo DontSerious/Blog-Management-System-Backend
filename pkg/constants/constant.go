@@ -11,11 +11,13 @@ const (
 
 // addr
 const (
-	EtcdAddress            = "127.0.0.1:2379"
+	EtcdIP                 = "etcd"
+	EtcdAddress            = EtcdIP + ":2379"
 	UserResolveTCPAddr     = "127.0.0.1:6660"
 	UserInfoResolveTCPAddr = "127.0.0.1:6661"
 	EditResolveTCPAddr     = "127.0.0.1:6662"
 	FileResolveTCPAddr     = "127.0.0.1:6663"
+	MainAPIPort            = ":8888"
 
 	UserServiceName     = "user"
 	UserInfoServiceName = "userInfo"

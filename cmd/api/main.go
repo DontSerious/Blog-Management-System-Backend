@@ -6,6 +6,7 @@ import (
 
 	"github.com/DontSerious/Blog-Management-System-Backend/cmd/api/handlers"
 	"github.com/DontSerious/Blog-Management-System-Backend/cmd/api/rpc"
+	"github.com/DontSerious/Blog-Management-System-Backend/pkg/constants"
 	"github.com/DontSerious/Blog-Management-System-Backend/pkg/middlewares"
 
 	"github.com/gin-gonic/gin"
@@ -41,7 +42,7 @@ func main() {
 	r.DELETE("/delAll", handlers.DelAll)
 	r.POST("/uploadFile", handlers.UploadFile)
 
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(constants.MainAPIPort, r); err != nil {
 		log.Println(err)
 	}
 }
